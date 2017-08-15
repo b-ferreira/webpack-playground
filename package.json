@@ -1,0 +1,19 @@
+{
+  "name": "webpack-playground",
+  "version": "1.0.0",
+  "description": "Project used to learn about Webpack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "javascript",
+    "js",
+    "webpack"
+  ],
+  "author": "Bruno Ferreira",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^3.5.4"
+  }
+}
