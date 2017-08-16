@@ -4,8 +4,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const config = {
   entry: './src/index.js',
   output: {
+    filename: 'bundle.js',
     path: _path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    publicPath: 'dist/'
   },
   module: {
     rules: [
@@ -23,6 +24,16 @@ const config = {
           use: 'css-loader',
           fallback: 'style-loader'
         })
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: { limit: 40000 }
+          },
+          'image-webpack-loader'
+        ]
       }
     ]
   },
