@@ -1,13 +1,21 @@
-import big from './assets/big.jpg'
-import small from  './assets/small.jpg'
 import './style/image-viewer.css'
 
-const smallImage = document.createElement('img')
-smallImage.src = small
+import big from './assets/big.jpg'
+import small from  './assets/small.jpg'
+import sum from './sum'
 
-document.body.appendChild(smallImage)
+const createImageElement = () => {
+  const image = document.createElement('img')
+  document.body.appendChild(image)
+  return image
+}
 
-const bigImage = document.createElement('img')
-bigImage.src = big
+export const loadSmallImage = () => {
+  console.log(sum(199, 5))
+  createImageElement().src = small
+}
 
-document.body.appendChild(bigImage)
+export const loadBigImage = () => {
+  console.log(sum(199, 5))
+  createImageElement().src = big
+}
