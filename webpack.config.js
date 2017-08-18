@@ -1,12 +1,21 @@
+const webpack = require('webpack')
 const _path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+const VENDOR_LIBRARIES = [
+  'faker', 'lodash', 'react', 'react-dom', 'react-input-range', 'react-redux',
+  'react-router', 'redux', 'redux-form', 'redux-thunk'
+]
 
 const config = {
-  entry: './src/index.js',
+  entry: {
+    bundle: './src/index.js',
+    vendor: VENDOR_LIBRARIES
+  },
   output: {
-    filename: 'bundle.js',
-    path: _path.resolve(__dirname, 'dist'),
-    publicPath: 'dist/'
+    filename: '[name].[chunkhash].js',
+    path: _path.resolve(__dirname, 'dist')
   },
   module: {
     rules: [
@@ -38,7 +47,13 @@ const config = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('css/styles.css')
+    new ExtractTextPlugin('css/styles.css'),
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendor', 'manifest']
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    })
   ]
 }
 
